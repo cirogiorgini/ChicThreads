@@ -1,13 +1,11 @@
 import React from 'react'
-import AppNavbar from './AppNavBar'
+import ItemList from './ItemList';
 
 const ItemListContainer = () => {
-    const saludo = "Sea Bienvenido a mi Ecommerce"
+    const saludo = {greeting:'Sea bienvenido a mi ECommerce'};
   return (
     <>
-       <AppNavbar
-            greeting={saludo}
-       /> 
+       <ItemList saludo={saludo.greeting}/> 
     </>
   )
 }
