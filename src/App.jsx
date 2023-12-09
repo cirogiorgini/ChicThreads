@@ -1,7 +1,9 @@
 import React from 'react'
-import AppNavbar from './components/AppNavBar'
-import ItemListContainer from './components/ItemListContainer'
-import ItemList from './components/ItemList'
+
+
+import AppNavbar from './components/NavBar/AppNavbar'
+import ItemListContainer from './components/ItemListContainer/ItemListContainer'
+
 
 
 const App = () => {
