@@ -1,6 +1,8 @@
 import React from 'react'
-import AppNavbar from './components/AppNavBar'
-import ItemListContainer from './components/ItemListContainer'
+import {BrowserRouter, Route, Routes} from "react-router-dom"
+import AppNavbar from './components/NavBar/AppNavbar'
+import ItemListContainer from './components/ProductList/ItemListContainer'
+import Cart from './components/NavBar/Carrito/Cart'
 
 
 
@@ -13,7 +15,7 @@ const App = () => {
     
       <Routes>
         <Route path='/' element={<ItemListContainer/>}/>
-        <Route path='/carrito' element={<CartWidget/>}/>
+        <Route path='/carrito' element={<Cart/>}/>
       </Routes>
     
     </BrowserRouter>

@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
-import CartWidget from './CartWidget';
+import CartWidget from './Carrito/CartWidget';
 
 const AppNavbar = () => {
   return (
@@ -9,7 +9,7 @@ const AppNavbar = () => {
       <Navbar  bg="dark" variant="dark" expand="lg">
         <Container  >
 
-          <Navbar.Brand href="#home" className="me-auto">ChicThreads</Navbar.Brand>
+          <Navbar.Brand href="/" className="me-auto">ChicThreads</Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
@@ -23,7 +23,7 @@ const AppNavbar = () => {
             </Nav>
 
             <Nav className="ms-auto">
-              <Nav.Link href="#carrito"><CartWidget/></Nav.Link>
+              <Nav.Link href="/carrito"><CartWidget/></Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
