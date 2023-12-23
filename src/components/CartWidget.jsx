@@ -1,9 +1,12 @@
 import React from 'react'
 import { BiCart } from 'react-icons/bi';
+import Badge from 'react-bootstrap/Badge';
 
 const CartWidget = () => {
     return (
-    <div><BiCart/>   <span>4</span></div>
+    <div>
+        <BiCart/><Badge bg="primary">9</Badge>
+    </div>
     )
 }
 

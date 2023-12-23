@@ -1,14 +1,24 @@
 import React from 'react'
 import AppNavbar from './components/AppNavBar'
+import {BrowserRouter, Route, Routes } from "react-router-dom"
 import ItemListContainer from './components/ItemListContainer'
-import ItemList from './components/ItemList'
+import CartWidget from './components/CartWidget'
 
 
 const App = () => {
   return (
     <>
+    <BrowserRouter>
+      
       <AppNavbar/>
-      <ItemListContainer/>
+    
+      <Routes>
+        <Route path='/' element={<ItemListContainer/>}/>
+        <Route path='/carrito' element={<CartWidget/>}/>
+      </Routes>
+    
+    </BrowserRouter>
+      
     </> )
 }
 
