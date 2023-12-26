@@ -1,0 +1,42 @@
+.productos {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 2rem ;
+}
+.producto {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.producto > div {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.producto > img {
+    width: 100%;
+    aspect-ratio: 2/1;
+    object-fit: cover;
+}
+
+.producto .ver-mas {
+    text-decoration: none;
+    color: white;
+    padding: .5rem;
+    width: max-content;
+    border-radius: .5rem;
+    transition: .2s;
+}
+
+.ItemDetail{
+    display: flex;
+    gap: 8rem ;
+    padding: 4rem;
+    align-items: center;
+    justify-content: center;
+    max-width: 1300px;
+}
