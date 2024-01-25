@@ -40,3 +40,11 @@
     justify-content: center;
     max-width: 1300px;
 }
+.item-count{
+    display: flex   ;
+    gap: 1rem   ;
+}
+
+.item-count p{
+    padding-top: 12px;
+}
