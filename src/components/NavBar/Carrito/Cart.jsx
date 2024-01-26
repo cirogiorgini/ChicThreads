@@ -37,7 +37,11 @@ const Cart = () => {
           cart.length > 0 &&
           <>
             <h2>Precio total:${precioTotal()}</h2>
-            <Button onClick={empty}> Vaciar carrito </Button>
+            <div>
+              <Button>Comprar</Button>
+              <Button onClick={empty}> Vaciar carrito </Button>
+            </div>
+
           </>
         }
        
