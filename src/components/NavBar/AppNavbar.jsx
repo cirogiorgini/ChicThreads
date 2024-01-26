@@ -30,7 +30,7 @@ const AppNavbar = () => {
             </Nav>
 
             <Nav className="ms-auto">
-              <Nav.Link href="/carrito"><CartWidget/></Nav.Link>
+              <Link to="/carrito"><CartWidget/></Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

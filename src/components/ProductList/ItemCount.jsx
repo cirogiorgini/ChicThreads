@@ -1,18 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Button from 'react-bootstrap/Button';
+import { BsCartPlus } from "react-icons/bs";
 
-const ItemCount = () => {
-    const [Count, setCount] = useState(1)
 
-    const restar = () => {
-        Count > 1  && setCount(Count - 1)
-    }
-  return (
-    <div className='item-count'>
-         <Button variant="primary" onClick={restar}> - </Button>
-        <p>{Count}</p>
-        <Button variant="primary" onClick={ () => {setCount(Count + 1)}}> + </Button>
-    </div>
+const ItemCount = ({Count, restar, add, addToCart}) => {
+   
+
+
+   return (
+    <>
+      <div className='item-count'>
+          <Button variant="primary" onClick={restar}> - </Button>
+          <p>{Count}</p>
+          <Button variant="primary" onClick={ add}> + </Button>
+      </div>
+      <Button variant="primary" onClick={addToCart}> Agregar al carrito <BsCartPlus /> </Button>
+    </>
   )
 }
 
