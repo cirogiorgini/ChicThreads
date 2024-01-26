@@ -1,7 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { CartContext } from '../context/CartContext';
 import { useForm } from 'react-hook-form';
-import { collection, addDoc } from "firebase/firestore";
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Row from 'react-bootstrap/Row';
+import { collection, addDoc, doc } from "firebase/firestore";
 import { db } from '../firebase/config';
 
 const Checkout = () => {
@@ -9,108 +14,96 @@ const Checkout = () => {
     
     const [pedidoId, setPedidoId] = useState("");
 
-    const { carrito, precioTotal, vaciarCarrito } = useContext(CartContext);
+    const { cart, precioTotal, emptycart } = useContext(CartContext);
 
     const { register, handleSubmit } = useForm();
 
     const comprar = (data) => {
         const pedido = {
             cliente: data,
-            productos: carrito,
+            productos: cart,
             total: precioTotal()
         }
-        console.log(pedido);
+        console.log(pedido)
 
         const pedidosRef = collection(db, "pedidos");
 
-        addDoc(pedidosRef, pedido)
-            .then((doc) => {
-                setPedidoId(doc.id);
-                vaciarCarrito();
-            })
-
     }
+    
 
-    if (pedidoId) {
-        return (
-            <div className="container">
-                <h1 className="main-title">Muchas gracias por tu compra</h1>
-                <p>Tu número de pedido es: {pedidoId}</p>
-            </div>
-        )
-    }
 
   return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+    <Form className='p-5' onSubmit={handleSubmit(comprar)} >
       <Row className="mb-3">
         <Form.Group as={Col} md="4" controlId="validationCustom01">
-          <Form.Label>First name</Form.Label>
+          <Form.Label>Nombre</Form.Label >
           <Form.Control
             required
             type="text"
-            placeholder="First name"
-            defaultValue="Mark"
+            placeholder="Nombre"
+            {...register("nombre")}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="4" controlId="validationCustom02">
-          <Form.Label>Last name</Form.Label>
+          <Form.Label>Apellido</Form.Label>
           <Form.Control
             required
             type="text"
-            placeholder="Last name"
-            defaultValue="Otto"
+            placeholder="Apellido"
+            {...register("apellido")}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-          <Form.Label>Username</Form.Label>
+          <Form.Label>Correo electronico</Form.Label>
           <InputGroup hasValidation>
             <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
             <Form.Control
               type="text"
-              placeholder="Username"
+              placeholder="Correo electronico"
+              {...register("correo@")}
               aria-describedby="inputGroupPrepend"
               required
             />
             <Form.Control.Feedback type="invalid">
-              Please choose a username.
+              Ingrese un correo electronico.
             </Form.Control.Feedback>
           </InputGroup>
         </Form.Group>
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} md="6" controlId="validationCustom03">
-          <Form.Label>City</Form.Label>
-          <Form.Control type="text" placeholder="City" required />
+          <Form.Label>Ciudad</Form.Label>
+          <Form.Control type="text" placeholder="Ciudad" {...register("ciudad")} required />
           <Form.Control.Feedback type="invalid">
-            Please provide a valid city.
+            elige una ciudad valida.
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="3" controlId="validationCustom04">
-          <Form.Label>State</Form.Label>
-          <Form.Control type="text" placeholder="State" required />
+          <Form.Label>Pais</Form.Label>
+          <Form.Control type="text" placeholder="Pais" {...register("pais")} required />
           <Form.Control.Feedback type="invalid">
-            Please provide a valid state.
+            Ingrese un pais valido.
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group as={Col} md="3" controlId="validationCustom05">
-          <Form.Label>Zip</Form.Label>
-          <Form.Control type="text" placeholder="Zip" required />
+          <Form.Label>Codigo postal</Form.Label>
+          <Form.Control type="number" placeholder="Codigo postal" {...register("Codigo postal")} required />
           <Form.Control.Feedback type="invalid">
-            Please provide a valid zip.
+            Ingrese un codigo postal valido.
           </Form.Control.Feedback>
         </Form.Group>
       </Row>
       <Form.Group className="mb-3">
         <Form.Check
           required
-          label="Agree to terms and conditions"
+          label="Aceptar los terminos y condiciones"
           feedback="You must agree before submitting."
           feedbackType="invalid"
         />
       </Form.Group>
-      <Button type="submit">Submit form</Button>
+      <Button type="submit">Enviar pedido</Button>
     </Form>
   )
 }
