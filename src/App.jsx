@@ -5,7 +5,7 @@ import ItemListContainer from './components/ProductList/ItemListContainer'
 import Cart from './components/NavBar/Carrito/Cart'
 import "./main.css"
 import ItemDetailContainer from './components/ProductList/ItemDetailContainer'
-import { CartContext, CartProvider } from './context/CartContext'
+import { CartProvider } from './context/CartContext'
 
 
 
