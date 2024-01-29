@@ -35,11 +35,26 @@
 .ItemDetail{
     display: flex;
     gap: 8rem ;
-    padding: 4rem;
+    padding: 2rem;
+    padding-top: 8rem ;
     align-items: center;
     justify-content: center;
-    max-width: 1300px;
+
 }
+
+.ItemDetail img{
+    width: 600px;
+}
+
+.ItemDetail p{
+    max-width: 500px;
+    word-wrap: break-word;
+}
+
+.item-count{
+    margin-bottom: 1rem ;
+}
+
 .item-count{
     display: flex   ;
     gap: 1rem   ;
@@ -49,3 +64,74 @@
     padding-top: 12px;
 }
 
+.cart-grid{
+    display: grid;
+    width: 100%;
+    padding: 3rem;
+    grid-template-rows: 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+    "a a a a"
+    "b c c c";
+}
+
+.prod-title{
+    grid-area: a;
+    display: flex;
+    align-items: center ;
+    text-align: center;
+}
+
+.prod-title img{
+    padding-right: 10px ;
+}
+
+.prod-title img{
+    width: 200px;
+}
+
+.prod-count{
+    grid-area: b;
+    padding-left: 18rem;
+}
+
+.prod-price{
+    grid-area: c;
+    padding-left: 51rem;
+
+}
+
+.comprar{
+    text-decoration: none;
+    background-color: #5cb85c ;
+    color: white;
+    padding: 8px ;
+    border-radius: 5px ;
+}
+
+.btns{
+    display: flex;
+    gap: 1rem   ;
+}
+
+.bottom-cart{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+.carrito-vacio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; 
+    flex-direction: column;
+}
+
+.volver-tienda{
+    text-decoration: none;
+    color: white    ;
+}
+
+  

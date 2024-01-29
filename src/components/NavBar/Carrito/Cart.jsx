@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const { cart, emptyCart } = useContext(CartContext);
-  const [cartItems, setCartItems] = useState(cart); // Estado para los elementos del carrito
-  const [totalPrice, setTotalPrice] = useState(0); // Estado para el precio total
+  const [cartItems, setCartItems] = useState(cart); 
+  const [totalPrice, setTotalPrice] = useState(0); 
 
   useEffect(() => {
     setTotalPrice(precioTotal());
@@ -34,36 +34,48 @@ const Cart = () => {
 
   return (
     <div>
-      {cartItems.map(prod => (
-        <article key={prod.id}>
-          <section className='prod-title'>
-            <img src={prod.image} alt="" />
-            <h2>{prod.title}</h2>
-          </section>
-          <section className='prod-count'>
-            <div className='item-count'>
-              <Button variant="primary" onClick={() => updateCount(prod.id, prod.Count - 1)}> - </Button>
-              <p>{prod.Count}</p>
-              <Button variant="primary" onClick={() => updateCount(prod.id, prod.Count + 1)}> + </Button>
-            </div>
-          </section>
-          <section className='prod-price'>
-            <p>{prod.price}</p>
-            <p>{prod.price * prod.Count}</p>
-          </section>
-        </article>
-      ))}
+      {cartItems.length === 0 ? (
+        <div className='carrito-vacio'>
+          <p>El carrito está vacío</p>
+          <Button>
+            <Link className='volver-tienda' to="/"> Volver a la tienda</Link>
+          </Button>
+        </div>
+      ) : (
+        cartItems.map(prod => (
+          <article className='cart-grid' key={prod.id}>
+            <section className='prod-title'>
+              <img src={prod.image} alt="" />
+              <h2>{prod.title}</h2>
+            </section>
+            <section className='prod-count'>
+              <div className='item-count'>
+                <Button variant="primary" onClick={() => updateCount(prod.id, prod.Count - 1)}> - </Button>
+                <p>{prod.Count}</p>
+                <Button variant="primary" onClick={() => updateCount(prod.id, prod.Count + 1)}> + </Button>
+              </div>
+            </section>
+            
+            <section className='prod-price'>
+              <p>Precio unitario: ${prod.price}</p>
+              <p>Precio total: ${prod.price * prod.Count}</p>
+            </section>
+          </article>
+        ))
+      )}
       {cartItems.length > 0 && (
-        <>
+        <div className='bottom-cart'>
           <h2>Precio total:${totalPrice}</h2>
-          <div>
-            <Link to="/Checkout">Comprar</Link>
-            <Button onClick={empty}> Vaciar carrito </Button>
+          <hr />
+          <div className='btns'>
+            <Link className='comprar' to="/Checkout">Comprar</Link>
+            <Button variant='danger'  onClick={empty}> Vaciar carrito </Button>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
 };
 
 export default Cart;
+
