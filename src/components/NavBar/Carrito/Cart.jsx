@@ -2,14 +2,21 @@ import React, { useContext, useState, useEffect } from 'react';
 import { CartContext } from '../../../context/CartContext';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import IconButton from '@mui/joy/IconButton';
+import Tooltip from '@mui/joy/Tooltip';
+import { FaTrash } from "react-icons/fa6";
 
 const Cart = () => {
   const { cart, emptyCart } = useContext(CartContext);
-  const [cartItems, setCartItems] = useState(cart); 
+  const [cartItems, setCartItems] = useState(() => {
+    const storedCart = localStorage.getItem('cart');
+    return storedCart ? JSON.parse(storedCart) : [];
+  }); 
   const [totalPrice, setTotalPrice] = useState(0); 
 
   useEffect(() => {
     setTotalPrice(precioTotal());
+    localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
   const precioTotal = () => {
@@ -20,6 +27,7 @@ const Cart = () => {
     emptyCart();
     setCartItems([]);
     setTotalPrice(0);
+    localStorage.removeItem('cart'); // Vacía el localStorage al vaciar el carrito
   };
 
   const updateCount = (id, newCount) => {
@@ -30,6 +38,12 @@ const Cart = () => {
       return item;
     });
     setCartItems(updatedCart);
+  };
+
+  const removeFromCart = (id) => {
+    const updatedCart = cartItems.filter(item => item.id !== id);
+    setCartItems(updatedCart);
+    localStorage.setItem('cart', JSON.stringify(updatedCart)); // Actualiza el localStorage después de eliminar el producto
   };
 
   return (
@@ -53,6 +67,11 @@ const Cart = () => {
                 <Button variant="primary" onClick={() => updateCount(prod.id, prod.Count - 1)}> - </Button>
                 <p>{prod.Count}</p>
                 <Button variant="primary" onClick={() => updateCount(prod.id, prod.Count + 1)}> + </Button>
+                <Tooltip title="Eliminar del carrito">
+                  <IconButton onClick={() => removeFromCart(prod.id)}>
+                    <FaTrash />
+                  </IconButton>
+                </Tooltip>
               </div>
             </section>
             
@@ -78,4 +97,3 @@ const Cart = () => {
 };
 
 export default Cart;
-

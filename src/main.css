@@ -36,7 +36,7 @@
     display: flex;
     gap: 8rem ;
     padding: 2rem;
-    padding-top: 8rem ;
+    padding-top: 5rem ;
     align-items: center;
     justify-content: center;
 
@@ -133,5 +133,13 @@
     text-decoration: none;
     color: white    ;
 }
+
+
+.flechita{
+    font-size: 2rem;
+    color: #0275d8;
+}
+
+
 
   
