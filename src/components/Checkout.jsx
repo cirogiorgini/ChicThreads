@@ -8,6 +8,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import { collection, addDoc, doc } from "firebase/firestore";
 import { db } from '../firebase/config';
+import Swal from 'sweetalert2';
+
+
 
 const Checkout = () => {
 
@@ -19,16 +22,29 @@ const Checkout = () => {
     const { register, handleSubmit } = useForm();
 
     const comprar = (data) => {
-        const pedido = {
-            cliente: data,
-            productos: cart,
-            total: precioTotal()
-        }
-        console.log(pedido)
+      const pedido = {
+          cliente: data,
+          productos: cart,
+          total: precioTotal()
+      };
+  
+      console.log(pedido);
+  
+      const pedidosRef = collection(db, "pedidos");
+    
+      Swal.fire({
+          title: "¡Pedido enviado!",
+          text: "El formulario se ha enviado correctamente.",
+          icon: "success",
+      });
 
-        const pedidosRef = collection(db, "pedidos");
+      addDoc(pedidosRef, pedido)
+            .then((doc) => {
+                setPedidoId(doc.id);
+                emptycart();
+            })
 
-    }
+  };
     
 
 
