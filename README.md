@@ -1,10 +1,11 @@
-# React + Vite
-![Vídeo sin título](https://github.com/cirogiorgini/ChicThreads/assets/134256693/62b36057-0e6f-4167-825d-7e764ba0d65c)
 
-
-Tecnologias utilizadas:
+Tecnologias utilizadas: 
+ <br>
  -React.js
+ <br>
  -FireBase
 >[!TIP]
->Para hacer deploy del proyecto debes instalarlo usando: npm install
->o bien entrando directamente desde el link del deploy  
+>Para instalar las dependencias del proyecto debes instalarlo utilizando: "npm install"
+><br>
+><br>
+>Luego utilizar: "npm run dev" o tambien podes utilizar el link de vercel: https://chic-threads.vercel.app/
